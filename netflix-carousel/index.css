@@ -9,8 +9,8 @@
 body {
   width: 100%;
   height: 100vh;
-  background-color: #000;
-  color: #f1f1f1;
+  background-color: #1f2937;
+  color: #f3f4f6;
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -32,12 +32,12 @@ ul {
 .slider {
   display: flex;
   transition: transform 0.3s ease-in-out;
-  gap: 4px;
 }
 
 .slider__item {
   flex: 0 0 25%;
   position: relative;
+  padding-right: 4px;
 }
 
 .slider__item > img {
