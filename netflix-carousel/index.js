@@ -1,3 +1,10 @@
+// TODO: enhancement
+/**
+ * Currently we add next page items dynamically on reaching a page.
+ * Which on sides, if looked carefully show a flicker, where new items are added
+ * Solution: A buffer can be created, so that at least 1 extra item in always ready
+ */
+
 ((parent) => {
   const ITEMS_PER_PAGE = 4;
   const sliderContainer = parent.querySelector(".container");
@@ -168,9 +175,11 @@
   const svgItems = {
     [BUTTON_TYPE.NEXT]: {
       path_d: "m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1",
+      class: "next-button",
     },
     [BUTTON_TYPE.PREVIOUS]: {
       path_d: "M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13",
+      class: "prev-button",
     },
   };
 
@@ -178,20 +187,21 @@
     const isNextButton = type === BUTTON_TYPE.NEXT;
     const wrapper = document.createElement("div");
     const svgNS = "http://www.w3.org/2000/svg";
+    const props = svgItems[type];
 
     wrapper.setAttribute("tabindex", 0);
     wrapper.setAttribute("role", "button");
     wrapper.setAttribute("data-type", type);
 
     wrapper.classList.add("button-wrapper");
-    wrapper.classList.add(isNextButton ? "next-button" : "prev-button");
+    wrapper.classList.add(props.class);
 
     const svg = document.createElementNS(svgNS, "svg");
     svg.setAttribute("fill", "none");
     svg.setAttribute("viewBox", "0 0 8 14");
 
     const path = document.createElementNS(svgNS, "path");
-    path.setAttribute("d", svgItems[type].path_d);
+    path.setAttribute("d", props.path_d);
     path.setAttribute("stroke", "currentColor");
     path.setAttribute("stroke-width", "1");
     path.setAttribute("stroke-linecap", "round");
