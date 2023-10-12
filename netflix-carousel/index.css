@@ -11,7 +11,7 @@ body {
   height: 100vh;
   background-color: #030712;
   color: #f3f4f6;
-  padding-block: 80px;
+  padding-block: 5rem;
   overflow: hidden;
 }
 
@@ -24,19 +24,26 @@ ul {
   list-style: none;
 }
 
+svg {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
 .container {
-  padding-inline: 60px;
+  position: relative;
+  padding-inline: 4rem;
 }
 
 .slider {
   display: flex;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 .slider__item {
   flex: 0 0 25%;
   position: relative;
-  padding-right: 4px;
+  padding-right: 0.25rem;
 }
 
 .slider__item > img {
@@ -51,6 +58,44 @@ ul {
   right: 0;
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
-  padding: 4px;
-  border-radius: 4px;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* arrow button classes */
+
+.button-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+}
+
+.button-wrapper:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.container:hover .button-wrapper {
+  opacity: 1;
+}
+
+.button-wrapper > svg {
+  color: #f3f4f6;
+  width: 40px;
+  height: 40px;
+}
+
+.prev-button {
+  left: 0;
+}
+
+.next-button {
+  right: 0;
 }
