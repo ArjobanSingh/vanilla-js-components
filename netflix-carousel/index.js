@@ -4,8 +4,8 @@
 
   const IMAGES = [
     "./images/vikings.webp",
-    "./images/vikings-valhalla.jpg",
     "./images/extraction2.jpg",
+    "./images/vikings-valhalla.jpg",
     "./images/fallout.webp",
     "./images/peaky-blinders.jpg",
     "./images/friday-night.jpg",
@@ -15,10 +15,10 @@
     "./images/1899.jpg",
     "./images/high-end.webp",
     "./images/rrr.webp",
+    "./images/witcher.jpg",
     "./images/sex-education.jpg",
     "./images/too-hot.jpg",
     "./images/tu-jhoothi.webp",
-    "./images/witcher.jpg",
   ];
 
   const NUM_OF_PAGES = IMAGES.length / ITEMS_PER_PAGE;
@@ -84,6 +84,7 @@
 
         const indexIndicator = document.createElement("div");
         indexIndicator.classList.add("absolute__item");
+        indexIndicator.innerHTML = `Item: ${oneBasedIdx}`;
 
         sliderItem.append(img, indexIndicator);
         fragment.append(sliderItem);
@@ -100,22 +101,22 @@
   }
 
   function addItemsAroundCurrentPage() {
-    const nextPageIdx =
-      activePageIndex === NUM_OF_PAGES - 1 ? 0 : activePageIndex + 1;
-    const previousPageIdx =
-      activePageIndex === 0 ? NUM_OF_PAGES - 1 : activePageIndex - 1;
-
-    const previousItems = createItemsForPage(previousPageIdx);
-    const nextItems = createItemsForPage(nextPageIdx);
-
     // when user move forward, remove first 4, and append next 4
     if (direction === DIRECTION.NEXT) {
+      const nextPageIdx =
+        activePageIndex === NUM_OF_PAGES - 1 ? 0 : activePageIndex + 1;
+
+      const nextItems = createItemsForPage(nextPageIdx);
       if (!isBeginning) removeItemsBetweenIdx(0, ITEMS_PER_PAGE);
       slider.append(nextItems);
     }
 
     // and vice-versa logic
     if (direction === DIRECTION.PREVIOUS) {
+      const previousPageIdx =
+        activePageIndex === 0 ? NUM_OF_PAGES - 1 : activePageIndex - 1;
+      const previousItems = createItemsForPage(previousPageIdx);
+
       removeItemsBetweenIdx(ITEMS_PER_PAGE * 2);
       slider.prepend(previousItems);
     }
